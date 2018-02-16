@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teste IPAM</title>
+	<!--CDN Boostrap CSS-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<table class="table  table-hover  text-center">
+		<thead class="thead-dark">
+			<tr>
+				<th>Nome Completo</th>
+				<th>Telefone</th>
+				<th>E-mail</th>
+				<th>Idade</th>
+				<th>Localização</th>
+			</tr>
+		</thead>
+		<tbody id="dados">
+			<tr  >
+				<td>[[nome]]</td>
+				<td>[[telefone]]</td>
+				<td>[[email]]</td>
+				<td>[[idade]]</td>
+				<td>[[localizacao]]</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!--CDN Jquery-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--CDN Bootstrap-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!--MirandaJS - Usado para setar informações Json na View de forma mais amigável-->
+	<script src="miranda-js/js/jquery.miranda.js"></script>
+	<!--Moment JS- Usado para fazer a verificação de data atual e data passada por parametro-->
+	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+	<!--Moment Precise Range - Usado para dar percisão nas duas datas passadas por parametro-->
+	<script type="text/javascript" src="moment-precise-range-master/moment-precise-range.js"></script>
+
+	<script type="text/javascript">
+
+	function calculaDias(date1, date2){
+        //formato do brasil 'pt-br'
+        moment.locale('pt-br');
+        //setando data1
+        var dt1 = moment(date1,'DD/MM/YYYY');
+        //setando data2
+        var dt2 = moment(date2,'DD/MM/YYYY');
+        //retorna diferença das datas incluindo meses e dias, com o 
+        //plugin Precise Range
+        return moment.preciseDiff(dt1,dt2);
+	}
+
+
+		//Setando dados em formato Json. Para inserir mais linhas, deve-se setar em forma de array
+		var dados = 
+
+			{"nome":"Júlio Ítalo Liarte Diniz","telefone":"(61)9 9111-4780","email":"julio.diniz4@gmail.com","idade":calculaDias('26/08/1995', moment().format('DD/MM/YYYY')),"localizacao":"<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.4702209354245!2d-48.03918958471226!3d-15.831864589028049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a325f1c0339fd%3A0x110a7ff1821babec!2sUnieuro+Centro+Universitario!5e0!3m2!1spt-BR!2sbr!4v1518571721395' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>"}
+		;
+
+		//Inserindo os dados da variavel do tipo Json para a visualização. Usei um plugin JavaScript chamado MirandaJS
+		$("#dados").mirandajs(dados);
+
+
+	</script>
+
+
+
+</body>
+</html>
